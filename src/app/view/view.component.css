@@ -1,0 +1,48 @@
+.action-buttons{
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    margin-left: 1.2em;
+}
+
+.mat-view-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.view-txt{
+    font-size: 15pt;
+    font-weight: 500;
+    margin: 5pt;
+    opacity: 1;
+}
+.view-txt-label{
+
+    font-size: 10pt;
+    font-weight: 200;
+    margin-left: -5pt;
+    opacity: .5;
+}
+
+.view-divider{
+    margin: 2em;
+    width: 280px;
+    padding: 2em;
+}
+
+.list-item-controller{
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.view-sensor-val{
+    font-weight: 600;
+    color: saddlebrown;
+}
+
+#mat-view-card-header{
+    margin-left: 0.5em;
+    margin-bottom: 1em;
+}

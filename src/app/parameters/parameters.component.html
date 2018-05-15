@@ -1,0 +1,78 @@
+<mat-toolbar color="">
+        <span>Crop Definitions</span>
+      
+        <!-- This fills the remaining space of the current row -->
+        <span class="fill-remaining-space"></span>
+        <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
+</mat-toolbar>
+
+<div id="form-parameter-add-section">
+            <form class="mat-form-field-control-parameters" name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+                        <div class="form-group parameter-field-container">
+                        <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropName.valid }">
+                            <mat-label for="cropName">Crop Name</mat-label>
+                            <input matInput type="text" class="form-control" name="cropName"  [(ngModel)]="model.cropName" #cropName="ngModel" required/>
+                            <mat-error *ngIf="f.submitted && !cropName.valid" class="help-block">Crop Name is required</mat-error>
+                        </mat-form-field>
+                        </div>
+                        <div class="form-group parameter-field-container">
+                        <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropSpecie.valid }">
+                            <mat-label for="cropSpecie">Crop Specie</mat-label>
+                            <input matInput type="text" class="form-control" name="cropSpecie"  [(ngModel)]="model.cropSpecie" #cropSpecie="ngModel" required/>
+                            <mat-error *ngIf="f.submitted && !cropSpecie.valid" class="help-block">Crop Specie is required</mat-error>
+                        </mat-form-field>
+                        </div>  
+                        <div class="form-group parameter-field-container">
+                                <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropMoistureLimit.valid }">
+                                    <mat-label for="cropMoistureLimit">Moisture Limit</mat-label>
+                                    <input matInput type="text" class="form-control" name="cropMoistureLimit"  [(ngModel)]="model.cropMoistureLimit" #cropMoistureLimit="ngModel" required/>
+                                    <mat-error *ngIf="f.submitted && !cropMoistureLimit.valid" class="help-block">Moisture Limit required</mat-error>
+                                </mat-form-field>
+                        </div>
+                        <div class="form-group parameter-field-container">
+                                <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropHumidityLimit.valid }">
+                                    <mat-label for="cropHumidityLimit">Humidity Limit</mat-label>
+                                    <input matInput type="text" class="form-control" name="cropHumidityLimit"  [(ngModel)]="model.cropHumidityLimit" #cropHumidityLimit="ngModel" required/>
+                                    <mat-error *ngIf="f.submitted && !cropHumidityLimit.valid" class="help-block">Humidity Limit required</mat-error>
+                                </mat-form-field>
+                        </div>
+                        <div class="form-group parameter-field-container">
+                                <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropWateringFrequency.valid }">
+                                    <mat-label for="cropWateringFrequency">Watering Frequency</mat-label>
+                                    <input matInput type="text" class="form-control" name="cropWateringFrequency"  [(ngModel)]="model.cropWateringFrequency" #cropWateringFrequency="ngModel" required/>
+                                    <mat-error *ngIf="f.submitted && !cropWateringFrequency.valid" class="help-block">Watering Frequency Required</mat-error>
+                                </mat-form-field>
+                        </div>
+                        
+                        <div class="form-group" id="parameter-add-button">
+                        <button mat-button [disabled]="loading" class="">Add Parameter</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                
+            </form>
+</div>
+<div>
+            <table class="table" id="table-parameters">
+                <thead>
+                    <tr>
+                        <th scope="col">Crop Name</th>
+                        <th scope="col">Crop Specie</th>
+                        <th scope="col">Moisture Limit</th>
+                        <th scope="col">Humidity Limit</th>
+                        <th scope="col">Watering Frequency(per day)</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor= " let parameter of parameters">
+                        <td scope="row">{{parameter.cropName}}</td>
+                        <td scope="row">{{parameter.cropSpecie}}</td>
+                        <td scope="row">{{parameter.cropMoistureLimit}}</td>
+                        <td scope="row">{{parameter.cropHumidityLimit}}</td>
+                        <td scope="row">{{parameter.cropWateringFrequency}}</td>
+                        <td scope="row"><a (click)="delete(parameter._id)">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+</div>
+

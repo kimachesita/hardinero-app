@@ -1,0 +1,16 @@
+div.mat-form-update-container{
+    display: flex;
+    flex-direction: row;
+    margin: 3em;
+}
+
+.mat-form-field-control {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-right: 2em;
+}
+
+div.mat-form-update-action{
+    margin-left: 3em;
+}

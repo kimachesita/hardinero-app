@@ -1,0 +1,35 @@
+.toolbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%  !important;
+  
+  }
+  
+  .bed-card-container{
+      
+      display: flex;
+      margin: 6em;
+      flex-direction:row;
+      flex-wrap:wrap;
+      justify-content: center;
+      
+      
+  }
+
+  .bed-card{
+    display:flex;
+    flex-direction: column;
+    align-content: stretch;
+    margin: 2em;
+    padding: 3em;
+    min-width: 200px;
+  }
+
+  .mat-panel-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }

@@ -1,0 +1,48 @@
+<mat-toolbar color="">
+        <span>Create Bed</span>
+      
+        <!-- This fills the remaining space of the current row -->
+        <span class="fill-remaining-space"></span>
+        <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
+</mat-toolbar>
+<div class="">
+    <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+        <div class="mat-form-create-container">
+        
+            <mat-form-field>
+            <mat-label for="bedCommonName">Bed Name</mat-label>
+            <input matInput type="text" class="form-control" name="bedCommonName" [(ngModel)]="model.bedCommonName" #bedCommonName="ngModel" required />
+            <mat-error *ngIf="f.submitted && !bedCommonName.valid" class="help-block">Bed Name is required.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+            <mat-label for="bedLocation">Bed Location</mat-label>
+            <input matInput type="text" class="form-control" name="bedLocation" [(ngModel)]="model.bedLocation" #bedLocation="ngModel" required />
+            <mat-error *ngIf="f.submitted && !bedLocation.valid" class="help-block">Bed Location is required.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+            <mat-label for="bedIPCamURI">IP CAM URI</mat-label>
+            <input matInput type="text" class="form-control" name="bedIPCamURI" [(ngModel)]="model.bedIPCamURI" #bedIPCamURI="ngModel" novalidate/>
+            <mat-error *ngIf="f.submitted && !bedIPCamURI.valid" class="help-block">IP CAM is required.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+            <mat-label for="bedMonitoringDevKey">Monitoring Device Key</mat-label>
+            <input matInput type="text" class="form-control" name="bedMonitoringDevKey" [(ngModel)]="model.bedMonitoringDevKey" #bedMonitoringDevKey="ngModel" novalidate/>
+            <mat-error *ngIf="f.submitted && !bedMonitoringDevKey.valid" class="help-block">Bed Monitoring Device Key is required.</mat-error>
+            </mat-form-field>
+        
+
+        </div>
+        <div class="action-buttons">
+            <button mat-raised-button [disabled]="loading" class="">Create Bed</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
+        </div>
+        
+    </form>
+</div>

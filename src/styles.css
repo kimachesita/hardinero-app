@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+/* @import 'assets/bootstrap/css/bootstrap.min.css'; */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.help-block {
+    font-size: 12px;
+}
+
+.component-headers{
+    font-size: 20pt;
+    font-weight: 500;
+}
+
+  
+.material-component-container{
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30em;
+}
+
+.prompt-card {
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mat-form-field-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.mat-form-field-control-parameters {
+    display: flex;
+    flex-direction: row;
+}
+
+.action-buttons{
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.fill-remaining-space{
+    flex: 1 1 auto;
+}
+

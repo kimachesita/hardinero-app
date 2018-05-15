@@ -1,0 +1,53 @@
+<div class="toolbar">
+        <mat-toolbar color="primary">
+            <span>Raspberry Pi Based Crop Management System</span>
+            <span class="fill-remaining-space"></span>
+            <button mat-button [matMenuTriggerFor]="menu">{{currentUser.firstName}} {{currentUser.lastName}}</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/parameters">Crop Parameters</button>
+                <button mat-menu-item routerLink="/create" class="" id="create">Create New Bed</button>
+                <button mat-menu-item routerLink="/login">Logout</button>
+            </mat-menu> 
+        </mat-toolbar>
+</div>
+<div class="bed-card-container" *ngIf="currentUserBedsNum == 0">
+    <mat-card class="bed-card">
+        <mat-card-title>
+            Sorry. Nothing to show for now. Begin by adding a new Bed.
+        </mat-card-title>
+    </mat-card>
+</div>
+
+<div class="bed-card-container" *ngIf="!currentUserBedsNum == 0">
+    <mat-card class="bed-card" *ngFor = 'let bed of currentUserBeds'>
+        <mat-card-title>{{bed.bedCommonName}}</mat-card-title>
+        <mat-card-subtitle>{{bed.bedLocation}}</mat-card-subtitle>
+        <mat-card-content>
+            
+            <div>
+                <div *ngIf="bed.bedCrop">Crop: {{bed.bedCrop.cropName}}</div>
+                <div *ngIf="bed.bedCrop">Days Old:<br>{{bed.bedCrop.cropPlantDate}}</div>
+                <div *ngIf="bed.bedCrop">Days to Harvest:<br>{{bed.bedCrop.cropHarvestDate}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Weather: {{bed.bedReading.weather}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Soil Moisture: {{bed.bedReading.soilMoisture}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Temperature: {{bed.bedReading.temperature}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Humidity: {{bed.bedReading.humidity}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Last Watering: {{bed.bedReading.lastWatering}}</div>
+                <div *ngIf="bed.bedMonitoringDevActive">Tank Level: {{bed.bedReading.tankLevel}}</div>
+            </div>
+            <div *ngIf="!bed.bedCrop">
+                <div>No Crop Planted Yet</div>
+            </div>
+            <div *ngIf="!bed.bedMonitoringDevActive">
+                <div>Monitoring Device Not Connected</div>
+            </div>
+            
+        </mat-card-content>
+        
+        <mat-card-actions class="mat-panel-card-actions">
+            <button mat-button routerLink="/view/{{bed._id}}" class="" id="view">VIEW</button>
+            <button mat-button routerLink="/update/{{bed._id}}" class="" id="edit">UPDATE</button> 
+        </mat-card-actions>
+    </mat-card>
+</div>
+
