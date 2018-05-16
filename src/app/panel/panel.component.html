@@ -18,7 +18,7 @@
     </mat-card>
 </div>
 
-<div class="bed-card-container" *ngIf="!currentUserBedsNum == 0">
+<div class="bed-card-container" *ngIf="currentUserBedsNum > 0">
     <mat-card class="bed-card" *ngFor = 'let bed of currentUserBeds'>
         <mat-card-title>{{bed.bedCommonName}}</mat-card-title>
         <mat-card-subtitle>{{bed.bedLocation}}</mat-card-subtitle>

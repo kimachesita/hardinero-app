@@ -17,7 +17,7 @@ export class PanelComponent implements OnInit {
 
   currentUser: User;
   currentUserBeds: Bed[];
-  currentUserBedsNum = 0;
+  currentUserBedsNum: number = 0;
 
   constructor(private bedService: BedService ) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
