@@ -22,7 +22,7 @@ export class UpdateComponent implements OnInit {
   selectedParameterCropName;
   selectedParameterId;
   loading: boolean = false;
-  testdate;
+  fetching = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -33,7 +33,7 @@ export class UpdateComponent implements OnInit {
             ) { }
 
   ngOnInit() {
-
+    this.fetching =true;
     this.currentBed = new Bed();
     this.getBedById();
     this.getAllParameters();
@@ -76,7 +76,10 @@ export class UpdateComponent implements OnInit {
 
   getAllParameters(){
     this.parameterService.getAll()
-    .subscribe( params =>{ this.parameters = params });
+    .subscribe( params =>{ 
+        this.parameters = params;
+        this.fetching = false;
+    });
   }
 
   getParameterByID(id){

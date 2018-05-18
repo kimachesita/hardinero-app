@@ -1,4 +1,8 @@
-<div *ngIf="currentBed">
+<div class="fetching-prompt" *ngIf="fetching">
+    <div>Fetching...</div>
+</div>
+<div class="" *ngIf="!fetching">
+    <div *ngIf="currentBed">
     <mat-toolbar color="">
         <span>View Bed</span>
       
@@ -92,4 +96,5 @@
                 <button mat-raised-button class="" id="" (click)="delete()">Delete</button>
         </div>
     </form>
+</div>
 </div>

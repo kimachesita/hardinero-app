@@ -8,6 +8,7 @@ const expressJwt = require('express-jwt');
 const cors = require('cors');
 const SocketIO = require('socket.io');
 const config = require('./server/config.json');
+const BedService = require('./server/services/bed.service');
 
 // Get our API routes
 const api = require('./server/routes/api');
@@ -69,9 +70,13 @@ const server = http.createServer(app);
 const io = SocketIO(server);
 io.on('connection',function(socket){
    console.log(`Socket ${socket.id} connected...`);
-   socket.on('report',function(device_key,data){
-     console.log(`Report from ${device_key}:`);
-     console.log(data);
+   socket.on('overwrite',function(data){
+      console.log(`Report to ${data.device_key}:`);
+      console.log(data);
+   });
+   socket.on('report',function(data){
+     console.log(`Report from ${data.device_key}:`);
+     
    });
    socket.on('disconnect',function(){
      console.log(`Socket ${socket.id} disconnected...`);
@@ -85,7 +90,7 @@ mongoose.connect(config.connectionString);
 db = mongoose.connection;
 db.on('error',function(){
   //console.error.bind(console, 'connection error:');
-  console.log('Error connecting to DB.');
+  console.log('Error connecting to '  + mongoDbUri);
   console.log('Application cannot be started. Exiting Now.');
   process.exit(-1);
 });

@@ -11,11 +11,18 @@
         </mat-toolbar>
 </div>
 <div class="bed-card-container" *ngIf="currentUserBedsNum == 0">
-    <mat-card class="bed-card">
-        <mat-card-title>
-            Sorry. Nothing to show for now. Begin by adding a new Bed.
-        </mat-card-title>
-    </mat-card>
+    <div *ngIf="fetching">
+        Fetching...
+    </div>
+    <div *ngIf="!fetching">
+        <mat-card class="bed-card">
+            <mat-card-title>
+                <div class="component-headers">Sorry. Nothing to show for now.</div>
+                <div class="component-headers">Begin by adding a new Bed.</div>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    
 </div>
 
 <div class="bed-card-container" *ngIf="currentUserBedsNum > 0">

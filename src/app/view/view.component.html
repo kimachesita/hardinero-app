@@ -1,77 +1,83 @@
-<mat-toolbar color="">
-    <span>View Bed</span>
-    <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
-    <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
-</mat-toolbar>
-<div class="mat-view-container" *ngIf="currentBed">
-        <div class="mat-view-basic-section view-divider">
-            <div class="view-txt"><div class="view-txt-label">Name</div>  {{currentBed.bedCommonName}}</div>
-            <div class="view-txt"><div class="view-txt-label">Location</div> {{currentBed.bedLocation}}</div>
-            <div class="view-txt"><div class="view-txt-label">IP CAM URI</div> {{currentBed.bedIPCamURI}}</div>
-            <div class="view-txt"><div class="view-txt-label">Monitoring Device Key</div> {{currentBed.bedMonitoringDevKey}}</div>
-            <div *ngIf="currentBed.MonitoringDevActive" class="view-txt">
-                    <div class="view-txt-label">Monitoring Device</div> Online
-            </div>
-            <div *ngIf="!currentBed.MonitoringDevActive" class="view-txt">
-                    <div class="view-txt-label">Monitoring Device</div> Offline
-            </div>
-        </div>
-        <mat-divider [vertical]="true"></mat-divider>
-        <div class="mat-view-crop-section view-divider" *ngIf="currentBed.bedCrop">
-                <div class="view-txt"><div class="view-txt-label">Crop Name</div>  {{currentBed.bedCrop.cropName}}</div>
-                <div class="view-txt"><div class="view-txt-label">Crop Specie</div> {{currentBed.bedCrop.cropSpecie}}</div>
-                <div class="view-txt"><div class="view-txt-label">Plant Date</div> {{currentBed.bedCrop.cropPlantDate}}</div>
-                <div class="view-txt"><div class="view-txt-label">Harvest Date</div> {{currentBed.bedCrop.cropHarvestDate}}</div>
-                <div class="view-txt"><div class="view-txt-label">Moisture Limit</div> {{currentBed.bedCrop.cropMoistureLimit}}</div>
-                <div class="view-txt"><div class="view-txt-label">Humidity Limit</div> {{currentBed.bedCrop.cropHumidityLimit}}</div>
-                <div class="view-txt"><div class="view-txt-label">Watering Frequency</div> {{currentBed.bedCrop.cropWateringFrequency}}</div>
-        </div>
-        <div class="mat-view-crop-section view-divider" *ngIf="!currentBed.bedCrop">
-                <div class="component-headers">No Crop Added Yet.</div>
-        </div>
-        <div class="mat-view-sensor-section view-divider">
-                    <mat-card>
-                        <div id="mat-view-card-header">Sensor Readings</div>
-                        <mat-card-content>
-                                        <div class="list-item-controller">
-                                            <span>Weather</span>
-                                            <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.weather}}</span>
-                                            <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                        </div>
-                                        <div class="list-item-controller">
-                                            <span>Temperature</span>
-                                            <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.temperature}}</span>
-                                            <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                        </div>
-                                        <div class="list-item-controller">
-                                             Humidity
-                                            <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.humidity}}</span>
-                                            <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                        </div>
-                                        <div class="list-item-controller">
-                                             Soil Moisture
-                                            <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.moisture}}</span>
-                                            <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                        </div>
-                                        <div class="list-item-controller">
-                                                Water Pump
-                                               <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.waterPumpOn}}</span>
-                                               <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                           </div>
-                                           <div class="list-item-controller">
-                                                Tank Level
-                                               <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.tankLevel}}</span>
-                                               <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                           </div>
-                                           <div class="list-item-controller">
-                                                Last Watering
-                                               <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.lastWatering}}</span>
-                                               <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
-                                           </div>
-                        </mat-card-content>
-                    </mat-card>
-                    
-
+<div class="fetching-prompt" *ngIf="fetching">
+    <div>Fetching...</div>
+</div>
+<div class="" *ngIf="!fetching">
+        <mat-toolbar color="">
+                <span>View Bed</span>
+                <!-- This fills the remaining space of the current row -->
+                <span class="fill-remaining-space"></span>
+                <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
+        </mat-toolbar>
+        <div class="mat-view-container" *ngIf="currentBed">
+                <div class="mat-view-basic-section view-divider">
+                    <div class="view-txt"><div class="view-txt-label">Name</div>  {{currentBed.bedCommonName}}</div>
+                    <div class="view-txt"><div class="view-txt-label">Location</div> {{currentBed.bedLocation}}</div>
+                    <div class="view-txt"><div class="view-txt-label">IP CAM URI</div> {{currentBed.bedIPCamURI}}</div>
+                    <div class="view-txt"><div class="view-txt-label">Monitoring Device Key</div> {{currentBed.bedMonitoringDevKey}}</div>
+                    <div *ngIf="currentBed.MonitoringDevActive" class="view-txt">
+                            <div class="view-txt-label">Monitoring Device</div> Online
+                    </div>
+                    <div *ngIf="!currentBed.MonitoringDevActive" class="view-txt">
+                            <div class="view-txt-label">Monitoring Device</div> Offline
+                    </div>
+                </div>
+                <mat-divider [vertical]="true"></mat-divider>
+                <div class="mat-view-crop-section view-divider" *ngIf="currentBed.bedCrop">
+                        <div class="view-txt"><div class="view-txt-label">Crop Name</div>  {{currentBed.bedCrop.cropName}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Crop Specie</div> {{currentBed.bedCrop.cropSpecie}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Plant Date</div> {{currentBed.bedCrop.cropPlantDate}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Harvest Date</div> {{currentBed.bedCrop.cropHarvestDate}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Moisture Limit</div> {{currentBed.bedCrop.cropMoistureLimit}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Humidity Limit</div> {{currentBed.bedCrop.cropHumidityLimit}}</div>
+                        <div class="view-txt"><div class="view-txt-label">Watering Frequency</div> {{currentBed.bedCrop.cropWateringFrequency}}</div>
+                </div>
+                <div class="mat-view-crop-section view-divider" *ngIf="!currentBed.bedCrop">
+                        <div class="component-headers">No Crop Added Yet.</div>
+                </div>
+                <div class="mat-view-sensor-section view-divider">
+                            <mat-card>
+                                <div id="mat-view-card-header">Sensor Readings</div>
+                                <mat-card-content>
+                                                <div class="list-item-controller">
+                                                    <span>Weather</span>
+                                                    <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.weather}}</span>
+                                                    <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                </div>
+                                                <div class="list-item-controller">
+                                                    <span>Temperature</span>
+                                                    <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.temperature}}</span>
+                                                    <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                </div>
+                                                <div class="list-item-controller">
+                                                     Humidity
+                                                    <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.humidity}}</span>
+                                                    <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                </div>
+                                                <div class="list-item-controller">
+                                                     Soil Moisture
+                                                    <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.moisture}}</span>
+                                                    <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                </div>
+                                                <div class="list-item-controller">
+                                                        Water Pump
+                                                       <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.waterPumpOn}}</span>
+                                                       <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                   </div>
+                                                   <div class="list-item-controller">
+                                                        Tank Level
+                                                       <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.tankLevel}}</span>
+                                                       <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                   </div>
+                                                   <div class="list-item-controller">
+                                                        Last Watering
+                                                       <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{bedReading.bedReading.lastWatering}}</span>
+                                                       <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                                                   </div>
+                                </mat-card-content>
+                            </mat-card>
+                            
+        
+                </div>
         </div>
 </div>
+

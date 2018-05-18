@@ -1,4 +1,4 @@
 {
-    "connectionString": "mongodb://msuiit:12345@ds123770.mlab.com:23770/hardinero-db",
+    "connectionString": "mongodb://localhost:27017/HardineroDb",
     "secret": "ChristAndTheChurch"
 }

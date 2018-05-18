@@ -18,12 +18,14 @@ export class PanelComponent implements OnInit {
   currentUser: User;
   currentUserBeds: Bed[];
   currentUserBedsNum: number = 0;
+  fetching = false;
 
   constructor(private bedService: BedService ) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
+    this.fetching = true;
     this.getAllBeds();
   }
 
@@ -33,7 +35,9 @@ export class PanelComponent implements OnInit {
       this.currentUserBeds.forEach(()=>{
           this.currentUserBedsNum++;
       });
-     /* _.map(this.currentUserBeds,function(bed){ bed.bedMonitoringDevActive = true}) */;});
+      this.fetching = false;
+     /* _.map(this.currentUserBeds,function(bed){ bed.bedMonitoringDevActive = true}) */
+    });
   }
   
 

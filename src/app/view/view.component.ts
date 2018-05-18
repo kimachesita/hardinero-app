@@ -13,17 +13,23 @@ import { BedService } from '../_services/bed.service';
 export class ViewComponent implements OnInit {
 
   currentBed: Bed;
+  fetching = false;
+
   constructor(private route: ActivatedRoute,
               private bedService: BedService,
               private location: Location) { }
 
   ngOnInit() {
+    this.fetching = true;
     this.getBedById();
   }
 
   getBedById(){
       const id = this.route.snapshot.paramMap.get('id');
-      this.bedService.getById(id).subscribe((bed) => {this.currentBed = bed });
+      this.bedService.getById(id).subscribe((bed) => {
+        this.currentBed = bed; 
+        this.fetching = false;
+      });
   }
 
   goBack(){
