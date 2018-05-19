@@ -29,6 +29,7 @@ import { ErrorInterceptor} from './_helpers/error.interceptor';
 import { AppRoutingModule } from './/app-routing.module';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ParameterService } from './_services/parameter.service';
+import { SocketService } from './_services/socket.service';
 
 
 
@@ -68,7 +69,8 @@ import { ParameterService } from './_services/parameter.service';
     AuthenticationService, 
     AuthGuard,
     BedService,
-    ParameterService
+    ParameterService,
+    SocketService
   ],
   bootstrap: [AppComponent]
 })

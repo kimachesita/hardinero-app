@@ -6,9 +6,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressJwt = require('express-jwt');
 const cors = require('cors');
-const SocketIO = require('socket.io');
+const SocketManager = require('./server/helpers/socketManager');
 const config = require('./server/config.json');
-const BedService = require('./server/services/bed.service');
 
 // Get our API routes
 const api = require('./server/routes/api');
@@ -66,23 +65,8 @@ app.set('port', port);
  */
 const server = http.createServer(app);
 
-//connect to io
-const io = SocketIO(server);
-io.on('connection',function(socket){
-   console.log(`Socket ${socket.id} connected...`);
-   socket.on('overwrite',function(data){
-      console.log(`Report to ${data.device_key}:`);
-      console.log(data);
-   });
-   socket.on('report',function(data){
-     console.log(`Report from ${data.device_key}:`);
-     
-   });
-   socket.on('disconnect',function(){
-     console.log(`Socket ${socket.id} disconnected...`);
-   })
-});
-
+//pass server to socketManger
+const socketManager = new SocketManager(server);
 
 //connect to db
 const mongoDbUri = process.env.DBURI || config.connectionString;
@@ -92,7 +76,7 @@ db.on('error',function(){
   //console.error.bind(console, 'connection error:');
   console.log('Error connecting to '  + mongoDbUri);
   console.log('Application cannot be started. Exiting Now.');
-  process.exit(-1);
+  process.exit(1);
 });
 db.once('open',function(){
     console.log('Connected to ' + mongoDbUri);
@@ -101,4 +85,4 @@ db.once('open',function(){
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port, () => console.log(`API running on localhost:${port}/api`));
+server.listen(port, () => console.log(`API running on Port ${port}/api`));

@@ -3,98 +3,107 @@
 </div>
 <div class="" *ngIf="!fetching">
     <div *ngIf="currentBed">
-    <mat-toolbar color="">
-        <span>View Bed</span>
-      
-        <!-- This fills the remaining space of the current row -->
-        <span class="fill-remaining-space"></span>
-        <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
-    </mat-toolbar>
-    <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
-        <div class="mat-form-update-container">
-        <div class="mat-form-field-control" id="bed-info-section">
-            <mat-form-field class="">
-                <mat-label for="bedCommonName">Bed Name</mat-label>
-                <input matInput [(ngModel)]="currentBed.bedCommonName" name="bedCommonName" value={{currentBed.bedCommonName}} #bedCommonName="ngModel">
-            </mat-form-field>
-            <mat-form-field class="">
-                    <mat-label for="bedLocation">Bed Location</mat-label>
-                    <input matInput [(ngModel)]="currentBed.bedLocation" name="bedLocation" value={{currentBed.bedLocation}} #bedLocation="ngModel">
-            </mat-form-field>
-            <mat-form-field class="">
-                <mat-label for="bedIPCamURI">IP Cam URI</mat-label>
-                <input matInput [(ngModel)]="currentBed.bedIPCamURI" name="bedIPCamURI" value={{currentBed.bedIPCamURI}} #bedIPCamURI="ngModel">
-            </mat-form-field>
-            <mat-form-field class="" >
-                <mat-label for="bedMonitoringDevKey">Monitoring Device Key</mat-label>
-                <input matInput [(ngModel)]="currentBed.bedMonitoringDevKey" name="bedMonitoringDevKey" value={{currentBed.bedMonitoringDevKey}} #bedMonitoringDevKey="ngModel">
-            </mat-form-field>
-        </div>
-        <div class="" id="bed-crop-section">
-                <div class="mat-form-field-control" *ngIf="currentBed.bedCrop" id="bed-crop-predefined">       
-                    
+        <mat-toolbar color="">
+            <span>View Bed</span>
+
+            <!-- This fills the remaining space of the current row -->
+            <span class="fill-remaining-space"></span>
+            <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
+        </mat-toolbar>
+        <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
+            <div class="mat-form-update-container">
+                <div class="mat-form-field-control" id="bed-info-section">
+                    <mat-form-field class="">
+                        <mat-label for="bedCommonName">Bed Name</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCommonName" name="bedCommonName" value={{currentBed.bedCommonName}} #bedCommonName="ngModel">
+                    </mat-form-field>
+                    <mat-form-field class="">
+                        <mat-label for="bedLocation">Bed Location</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedLocation" name="bedLocation" value={{currentBed.bedLocation}} #bedLocation="ngModel">
+                    </mat-form-field>
+                    <mat-form-field class="">
+                        <mat-label for="bedIPCamURI">IP Cam URI</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedIPCamURI" name="bedIPCamURI" value={{currentBed.bedIPCamURI}} #bedIPCamURI="ngModel">
+                    </mat-form-field>
+                    <mat-form-field class="">
+                        <mat-label for="bedMonitoringDevKey">Monitoring Device Key</mat-label>
+                        <input [disabled]="currentBed.bedMonitoringDevActive" matInput [(ngModel)]="currentBed.bedMonitoringDevKey" name="bedMonitoringDevKey" value={{currentBed.bedMonitoringDevKey}}
+                            #bedMonitoringDevKey="ngModel">
+                    </mat-form-field>
+                </div>
+                <div class="" id="bed-crop-section">
+                    <div class="mat-form-field-control" *ngIf="currentBed.bedCrop" id="bed-crop-predefined">
+
                         <mat-label for="cropName">Crop Name</mat-label>
                         <mat-form-field>
-                                <mat-select (change)="selectCropName()" [(value)]="selectedParameterId" placeholder="Select Crop">
-                                  <mat-option *ngFor="let parameter of parameters" [value]="parameter._id">
+                            <mat-select (change)="selectCropName()" [(value)]="selectedParameterId" placeholder="Select Crop">
+                                <mat-option *ngFor="let parameter of parameters" [value]="parameter._id">
                                     {{ parameter.cropName }}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                              
-                              <mat-label for="cropName">Crop Name</mat-label>
-                              <input matInput [(ngModel)]="currentBed.bedCrop.cropName" name="cropName" value={{currentBed.bedCrop.cropName}} #cropName="ngModel" disabled>
-                    
-                            <mat-label for="cropSpecie">Specie</mat-label>
-                            <input matInput [(ngModel)]="currentBed.bedCrop.cropSpecie" name="cropSpecie" value={{currentBed.bedCrop.cropSpecie}} #cropSpecie="ngModel" disabled>
-                    
-                    
-                            <mat-label for="cropMoistureLimit">Moisture Limit</mat-label>
-                            <input matInput [(ngModel)]="currentBed.bedCrop.cropMoistureLimit" name="cropMoistureLimit" value={{currentBed.bedCrop.cropMoistureLimit}} #cropMoistureLimit="ngModel" disabled>
-                    
-                   
-                            <mat-label for="cropHumidityLimit">Humidity Limit</mat-label>
-                            <input matInput [(ngModel)]="currentBed.bedCrop.cropHumidityLimit" name="cropHumidityLimit" value={{currentBed.bedCrop.cropHumidityLimit}} #cropHumidityLimit="ngModel" disabled>
-                    
-                   
-                            <mat-label for="cropWateringFrequency">Watering Frequency</mat-label>
-                            <input matInput [(ngModel)]="currentBed.bedCrop.cropWateringFrequency" name="cropWateringFrequency" value={{currentBed.bedCrop.cropWateringFrequency}} #cropWateringFrequency="ngModel" disabled>
-                    
-                    
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-label for="cropName">Crop Name</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCrop.cropName" name="cropName" value={{currentBed.bedCrop.cropName}} #cropName="ngModel"
+                            disabled>
+
+                        <mat-label for="cropSpecie">Specie</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCrop.cropSpecie" name="cropSpecie" value={{currentBed.bedCrop.cropSpecie}} #cropSpecie="ngModel"
+                            disabled>
+
+
+                        <mat-label for="cropMoistureLimit">Moisture Limit</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCrop.cropMoistureLimit" name="cropMoistureLimit" value={{currentBed.bedCrop.cropMoistureLimit}}
+                            #cropMoistureLimit="ngModel" disabled>
+
+
+                        <mat-label for="cropHumidityLimit">Humidity Limit</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCrop.cropHumidityLimit" name="cropHumidityLimit" value={{currentBed.bedCrop.cropHumidityLimit}}
+                            #cropHumidityLimit="ngModel" disabled>
+
+
+                        <mat-label for="cropWateringFrequency">Watering Frequency</mat-label>
+                        <input matInput [(ngModel)]="currentBed.bedCrop.cropWateringFrequency" name="cropWateringFrequency" value={{currentBed.bedCrop.cropWateringFrequency}}
+                            #cropWateringFrequency="ngModel" disabled>
+
+
                         <mat-form-field>
-                            <input matInput [(ngModel)]="currentBed.bedCrop.cropPlantDate" name="cropPlantDate" [matDatepicker]="dp3" placeholder="Plant Date" disabled>
+                            <input matInput [(ngModel)]="currentBed.bedCrop.cropPlantDate" name="cropPlantDate" [matDatepicker]="dp3" placeholder="Plant Date"
+                                disabled>
                             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                         </mat-form-field>
-                   
-                  
-                            <mat-form-field>
-                                <input matInput [(ngModel)]="currentBed.bedCrop.cropHarvestDate" name="cropHarvestDate" [matDatepicker]="dp4" placeholder="Harvest Date" disabled>
-                                <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
-                                <mat-datepicker #dp4 disabled="false"></mat-datepicker>
-                            </mat-form-field>
-                    
-                </div>
-                <div class="mat-form-field-control" *ngIf="!currentBed.bedCrop" id="bed-crop-predefined">
-                
+
+
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="currentBed.bedCrop.cropHarvestDate" name="cropHarvestDate" [matDatepicker]="dp4" placeholder="Harvest Date"
+                                disabled>
+                            <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                            <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="mat-form-field-control" *ngIf="!currentBed.bedCrop" id="bed-crop-predefined">
+
                         <mat-label for="cropName">Crop Name</mat-label>
                         <mat-form-field>
-                                <mat-select (change)="selectCropName()" [(value)]="selectedParameterId" placeholder="Select Crop">
-                                  <mat-option *ngFor="let parameter of parameters" [value]="parameter._id">
+                            <mat-select (change)="selectCropName()" [(value)]="selectedParameterId" placeholder="Select Crop">
+                                <mat-option *ngFor="let parameter of parameters" [value]="parameter._id">
                                     {{ parameter.cropName }}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-      
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
                 </div>
+
             </div>
-        
-        </div>
-        <div class="action-buttons mat-form-update-action">
+            <div class="action-buttons mat-form-update-action">
                 <button mat-raised-button color="primary" [disabled]="loading">Update Data</button>
-                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
                 <button mat-raised-button class="" id="" (click)="delete()">Delete</button>
-        </div>
-    </form>
-</div>
+            </div>
+        </form>
+    </div>
 </div>
