@@ -15,7 +15,10 @@ export class SocketService {
     let observable = new Observable(observer =>{
         this.socket = io(this.url);
         this.socket.on('present',(data) => {
-          observer.next(data);
+          observer.next({'status':'live','data':data});
+        });
+        this.socket.on('absent',(device_key)=>{
+          observer.next({'status':'dead','data':device_key});
         });
         return () => {
           this.socket.disconnect();

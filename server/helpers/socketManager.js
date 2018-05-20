@@ -45,6 +45,7 @@ function SocketManager(server) {
               if(err) console.log('Error setting bedMonitoringDevActive to false');
               if(doc) console.log('Success setting bedMonitoringDevActive to false');
             });
+            socket.broadcast.emit('absent',devActiveArr[index].device_key);
             devActiveArr.splice(index,1);
             
         }
