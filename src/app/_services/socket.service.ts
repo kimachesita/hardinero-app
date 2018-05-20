@@ -11,20 +11,23 @@ export class SocketService {
 
   constructor() { }
 
-  receiveData(){
-    let observable = new Observable(observer =>{
-        this.socket = io(this.url);
-        this.socket.on('present',(data) => {
-          observer.next({'status':'live','data':data});
-        });
-        this.socket.on('absent',(device_key)=>{
-          observer.next({'status':'dead','data':device_key});
-        });
-        return () => {
-          this.socket.disconnect();
-        };
-    }) 
+  receiveData() {
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      this.socket.on('present', (data) => {
+        observer.next({ 'status': 'live', 'data': data });
+      });
+      this.socket.on('absent', (device_key) => {
+        observer.next({ 'status': 'dead', 'data': device_key });
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
     return observable;
   }
 
+  writeData(data) {
+    this.socket.emit('overwriteReq', data);
+  }
 }

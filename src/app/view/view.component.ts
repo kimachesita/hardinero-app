@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { SocketService } from '../_services/socket.service';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css']
 })
-export class ViewComponent implements OnInit {
+export class ViewComponent implements OnInit, OnDestroy {
 
   currentBed: Bed;
   fetching = false;
@@ -71,6 +71,9 @@ export class ViewComponent implements OnInit {
     }, this._INTERNAL_UPDATE_RATE);
   }
 
+  ngOnDestroy() {
+    this.connection.unsubscribe();
+  }  
 
   goBack() {
     this.location.back();
