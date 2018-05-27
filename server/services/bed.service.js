@@ -14,6 +14,7 @@ service.register = register;
 service.getAll = getAll;
 service.getById = getById;
 service.update = update;
+service.harvest = harvest;
 service._delete = _delete;
 
 module.exports = service;
@@ -204,6 +205,27 @@ function update(_id, bedParam, ownerId) {
         });
 
     }
+
+    return deferred.promise;
+}
+
+
+function harvest(_id, bedParam, ownerId) {
+
+    let deferred = Q.defer();
+
+    Bed.findById(_id, (err, bed) => {
+        if (err) deferred.reject(err.name + ':' + err.message);
+        if (bed) {
+            if (bed.bedCrop) {
+                bed.bedCrop = undefined;
+                bed.save(() => {
+                    deferred.resolve();
+                });
+            }
+
+        }
+    });
 
     return deferred.promise;
 }

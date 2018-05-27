@@ -24,6 +24,7 @@ router.post('/beds/register',bedController.register);
 router.get('/beds',bedController.getAll);
 router.get('/beds/:_id',bedController.getById);
 router.put('/beds/:_id',bedController.update);
+router.put('/beds/harvest/:_id',bedController.harvest);
 router.delete('/beds/:_id', bedController._delete);
 
 /* Crop parameters api listing */

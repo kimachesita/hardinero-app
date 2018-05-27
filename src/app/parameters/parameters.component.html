@@ -43,6 +43,13 @@
                                     <mat-error *ngIf="f.submitted && !cropWateringFrequency.valid" class="help-block">Watering Frequency Required</mat-error>
                                 </mat-form-field>
                         </div>
+                        <div class="form-group parameter-field-container">
+                            <mat-form-field class="" [ngClass]="{ 'has-error': f.submitted && !cropLifeSpan.valid }">
+                                <mat-label for="cropLifeSpan">Life Span</mat-label>
+                                <input matInput type="text" class="form-control" name="cropLifeSpan"  [(ngModel)]="model.cropLifeSpan" #cropLifeSpan="ngModel" required/>
+                                <mat-error *ngIf="f.submitted && !cropLifeSpan.valid" class="help-block">Crop Life Span required</mat-error>
+                            </mat-form-field>
+                        </div>
                         
                         <div class="form-group" id="parameter-add-button">
                         <button mat-button [disabled]="loading" class="">Add Parameter</button>
@@ -60,6 +67,7 @@
                         <th scope="col">Moisture Limit</th>
                         <th scope="col">Humidity Limit</th>
                         <th scope="col">Watering Frequency(per day)</th>
+                        <th scope="col">Life Span (Days)</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -70,6 +78,7 @@
                         <td scope="row">{{parameter.cropMoistureLimit}}</td>
                         <td scope="row">{{parameter.cropHumidityLimit}}</td>
                         <td scope="row">{{parameter.cropWateringFrequency}}</td>
+                        <td scope="row">{{parameter.cropLifeSpan}}</td>
                         <td scope="row"><a (click)="delete(parameter._id)">Delete</a></td>
                     </tr>
                 </tbody>

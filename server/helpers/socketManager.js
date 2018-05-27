@@ -10,7 +10,7 @@ let devActiveArr = [];
 function SocketManager(server) {
   const io = SocketIO(server);
   io.on('connection', function (socket) {
-    console.log(`Socket ${socket.id} connected...`);
+    //console.log(`Socket ${socket.id} connected...`);
 
     socket.on('overwriteReq', function (data) {
       console.log(`Overwrite request to ${data.device_key}:`);
@@ -23,7 +23,7 @@ function SocketManager(server) {
         return d.device_key == data.device_key;
       }) == null) {
         devActiveArr.push(data);
-        console.log(`${_.last(devActiveArr).device_key} registered to actives table`);
+        //console.log(`${_.last(devActiveArr).device_key} registered to actives table`);
         // update bed db
         Bed.findOneAndUpdate({ bedMonitoringDevKey: data.device_key }, { bedMonitoringDevActive: true }, (err, doc, res) => {
           if (err) console.log('Error setting bedMonitoringDevActive to true');
@@ -49,7 +49,7 @@ function SocketManager(server) {
         devActiveArr.splice(index, 1);
 
       }
-      console.log(`Device ${socket.id} disconnected...`);
+      //console.log(`Device ${socket.id} disconnected...`);
     });
   });
 }

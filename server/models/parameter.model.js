@@ -7,7 +7,8 @@ const ParameterSchema = Schema({
     cropSpecie: String,
     cropMoistureLimit: Number,
     cropHumidityLimit: Number,
-    cropWateringFrequency: Number
+    cropWateringFrequency: Number,
+    cropLifeSpan: Number
 });
 
 module.exports = mongoose.model('Parameter',ParameterSchema);

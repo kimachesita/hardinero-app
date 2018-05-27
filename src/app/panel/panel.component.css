@@ -1,35 +1,102 @@
+.side-nav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.side-nav{
+  padding-top: 6em;
+  width: 4em;
+  background-color: rgb(20, 16, 16);
+}
+
+
 .toolbar {
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
   
-  }
-  
-  .bed-card-container{
-      
-      display: flex;
-      margin: 6em;
-      flex-direction:row;
-      flex-wrap:wrap;
-      justify-content: center;
-      
-      
-  }
+/* Card Classes */
 
-  .bed-card{
-    display:flex;
-    flex-direction: column;
-    align-content: stretch;
-    margin: 2em;
-    padding: 3em;
-    min-width: 200px;
-  }
+.bed-card-super-container{
+  margin-top: 20em;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
 
-  .mat-panel-card-actions{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
+.bed-card-container{
+      
+  display: flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.mat-panel-card-actions{
+  color: rgb(65, 9, 117);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.bed-card{
+  display:flex;
+  flex-direction: column;
+  align-content: stretch;
+  margin: 2em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  width: 15em;
+}
+
+.bed-status{
+  margin-top: 5em;
+}
+
+.overdue{
+  background-color: rgb(255, 80, 0);
+  color: white;
+}
+
+span.card-value-txt{
+  font-size:  14pt;
+}
+
+.mat-card-subtitle{
+  color: inherit;
+}
+
+/* icons */
+button.nav-icons{
+  background-color:  rgb(20, 16, 16);
+  border: 0pt;
+}
+
+button.nav-icons:hover{
+  background-color: rgba(0, 255, 255, 0.205);
+}
+
+button.nav-icons:active{
+  background-color: rgba(0, 255, 255, 0.205);
+}
+
+
+/* mat panel */
+.mat-panel-header{
+  font-size: 14pt;
+  padding-top: 1em;
+}
+
+.chart-container{
+  max-width: 40em;
+}

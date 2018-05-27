@@ -14,7 +14,8 @@ const BedSchema = Schema({
         cropHarvestDate: Date,
         cropMoistureLimit: Number,
         cropHumidityLimit: Number,
-        cropWateringFrequency: Number
+        cropWateringFrequency: Number,
+        cropLifeSpan: Number
     },
     bedReading: {
         weather: String,
@@ -24,7 +25,7 @@ const BedSchema = Schema({
         waterMoisture2: Number,
         waterPumpOn: Boolean,
         tankLevel: Number,
-        lastWatering: String
+        lastWatering: String,
     },
     bedMonitoringDevKey: String,
     bedMonitoringDevActive: Boolean

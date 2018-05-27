@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers/fake-bakend';
@@ -52,6 +53,7 @@ import { SocketService } from './_services/socket.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ChartsModule
   ],
   providers: [
     {

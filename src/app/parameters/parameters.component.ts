@@ -43,6 +43,7 @@ export class ParametersComponent implements OnInit {
 
   add(){
     this.loading = true;
+    console.log(this.model.cropLifeSpan);
     this.parameterService.add(this.model)
     .subscribe(
       data =>{
@@ -72,8 +73,8 @@ export class ParametersComponent implements OnInit {
     });
   }
 
-  goBack(){
-    this.location.back();
+  goBack() {
+    this.router.navigate(['/']);
   }
 
 }

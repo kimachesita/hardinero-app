@@ -6,7 +6,7 @@ import { Bed } from '../_models/Bed';
 @Injectable()
 export class BedService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   create(bed: Bed) {
     return this.http.post(appConfig.apiUrl + '/beds/register', bed);
@@ -17,7 +17,11 @@ export class BedService {
   }
 
   getById(_id: string) {
-      return this.http.get<Bed>(appConfig.apiUrl + '/beds/' + _id);
+    return this.http.get<Bed>(appConfig.apiUrl + '/beds/' + _id);
+  }
+
+  harvest(bed: Bed) {
+    return this.http.put(appConfig.apiUrl + '/beds/harvest/' + bed._id,bed);
   }
 
   update(bed: Bed) {
@@ -25,7 +29,7 @@ export class BedService {
   }
 
   delete(_id: string) {
-      return this.http.delete(appConfig.apiUrl + '/beds/' + _id);
+    return this.http.delete(appConfig.apiUrl + '/beds/' + _id);
   }
 
 }

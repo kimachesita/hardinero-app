@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  title = "Raspberry Pi Based Crops and Soil Monitoring System";
 
   constructor(
     private route: ActivatedRoute,

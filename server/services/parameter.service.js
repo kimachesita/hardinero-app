@@ -48,6 +48,7 @@ function add(param){
         parameter.cropMoistureLimit = param.cropMoistureLimit;
         parameter.cropHumidityLimit = param.cropHumidityLimit;
         parameter.cropWateringFrequency = param.cropWateringFrequency;
+        parameter.cropLifeSpan = param.cropLifeSpan;
 
         parameter.save(function(err){
             if (err) deferred.reject(err.name + ': ' + err.message);

@@ -4,5 +4,6 @@ export class Parameter{
     cropSpecie: string;
     cropMoistureLimit: number;
     cropHumidityLimit: number;
-    cropWateringFrequency: number  
+    cropWateringFrequency: number;
+    cropLifeSpan: number;  
 }

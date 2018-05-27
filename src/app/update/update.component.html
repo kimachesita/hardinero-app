@@ -27,8 +27,8 @@
                     </mat-form-field>
                     <mat-form-field class="">
                         <mat-label for="bedMonitoringDevKey">Monitoring Device Key</mat-label>
-                        <input [disabled]="currentBed.bedMonitoringDevActive" matInput [(ngModel)]="currentBed.bedMonitoringDevKey" name="bedMonitoringDevKey" value={{currentBed.bedMonitoringDevKey}}
-                            #bedMonitoringDevKey="ngModel">
+                        <input [disabled]="currentBed.bedMonitoringDevActive" matInput [(ngModel)]="currentBed.bedMonitoringDevKey" name="bedMonitoringDevKey"
+                            value={{currentBed.bedMonitoringDevKey}} #bedMonitoringDevKey="ngModel">
                     </mat-form-field>
                 </div>
                 <div class="" id="bed-crop-section">
@@ -69,7 +69,7 @@
 
                         <mat-form-field>
                             <input matInput [(ngModel)]="currentBed.bedCrop.cropPlantDate" name="cropPlantDate" [matDatepicker]="dp3" placeholder="Plant Date"
-                                disabled>
+                                disabled (dateChange)="changeDate()">
                             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                         </mat-form-field>
@@ -78,7 +78,7 @@
                         <mat-form-field>
                             <input matInput [(ngModel)]="currentBed.bedCrop.cropHarvestDate" name="cropHarvestDate" [matDatepicker]="dp4" placeholder="Harvest Date"
                                 disabled>
-                            <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle matSuffix [for]="dp4" disabled="true"></mat-datepicker-toggle>
                             <mat-datepicker #dp4 disabled="false"></mat-datepicker>
                         </mat-form-field>
 
@@ -98,12 +98,14 @@
                 </div>
 
             </div>
-            <div class="action-buttons mat-form-update-action">
-                <button mat-raised-button color="primary" [disabled]="loading">Update Data</button>
-                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                />
-                <button mat-raised-button class="" id="" (click)="delete()">Delete</button>
-            </div>
+            
         </form>
+        <div class="action-buttons mat-form-update-action">
+            <button mat-raised-button color="primary" (click)="update()" [disabled]="loading">Update Data</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+            <button mat-raised-button (click)="harvest()" [disabled]="loading">Harvest</button>
+            <button mat-raised-button (click)="delete()" [disabled]="loading">Delete</button>
+        </div>
     </div>
 </div>

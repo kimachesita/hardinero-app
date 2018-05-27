@@ -25,6 +25,8 @@ export class UpdateComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   fetching = false;
   connection;
+  minDate = new Date();
+  maxDate = new Date();
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -38,13 +40,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.fetching = true;
     this.currentBed = new Bed();
-    this.getBedById();
     this.getAllParameters();
+    this.getBedById();
     this.listenSocket();
   }
 
   update() {
-    this.loading = true;   
+    this.loading = true;
     this.bedService.update(this.currentBed)
       .subscribe(data => {
         //creation succesful
@@ -65,7 +67,12 @@ export class UpdateComponent implements OnInit, OnDestroy {
         (bed) => {
           if (bed.bedCrop) {
             this.currentBed = bed;
-            // this.getParameterByName(bed.bedCrop.cropName);
+            if (this.parameters) {
+              this.selectedParameter = this.parameters.find((parameter) => {
+                return parameter.cropName == bed.bedCrop.cropName;
+              })
+            }
+
           } else {
             this.currentBed._id = bed._id;
             this.currentBed.bedCommonName = bed.bedCommonName;
@@ -77,13 +84,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
           }
         }
       )
+    this.fetching = false;
   }
 
   getAllParameters() {
     this.parameterService.getAll()
       .subscribe(params => {
         this.parameters = params;
-        this.fetching = false;
       });
   }
 
@@ -102,12 +109,21 @@ export class UpdateComponent implements OnInit, OnDestroy {
             cropPlantDate: new Date(Date.now()),
             cropHarvestDate: new Date(Date.now())
           }
+          let computed_date = new Date();
+          computed_date.setDate(this.currentBed.bedCrop.cropPlantDate.getDate() + this.selectedParameter.cropLifeSpan);
+          this.currentBed.bedCrop.cropHarvestDate = computed_date;
         } else {
           this.currentBed.bedCrop.cropName = this.selectedParameter.cropName;
           this.currentBed.bedCrop.cropSpecie = this.selectedParameter.cropSpecie;
           this.currentBed.bedCrop.cropMoistureLimit = this.selectedParameter.cropMoistureLimit;
           this.currentBed.bedCrop.cropHumidityLimit = this.selectedParameter.cropHumidityLimit;
           this.currentBed.bedCrop.cropWateringFrequency = this.selectedParameter.cropWateringFrequency;
+          this.currentBed.bedCrop.cropPlantDate = new Date(this.currentBed.bedCrop.cropPlantDate);
+          this.currentBed.bedCrop.cropHarvestDate = new Date();
+          //this.currentBed.bedCrop.cropHarvestDate
+          let computed_date = new Date();
+          computed_date.setDate(this.currentBed.bedCrop.cropPlantDate.getDate() + this.selectedParameter.cropLifeSpan);
+          this.currentBed.bedCrop.cropHarvestDate = computed_date;
         }
       })
   }
@@ -122,7 +138,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
   selectCropName() {
 
     if (this.selectedParameterId) {
-      console.log(this.selectedParameterId);
+      //console.log(this.selectedParameterId);
       this.getParameterByID(this.selectedParameterId);
     }
   }
@@ -144,18 +160,45 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   _socketUpdate() {
     //console.log('_socketUpdate');
-    let data = {
-      device_key: this.currentBed.bedMonitoringDevKey,
-      cropMoistureLimit: this.currentBed.bedCrop.cropMoistureLimit,
-      cropHumidityLimit: this.currentBed.bedCrop.cropHumidityLimit,
-      cropWateringFrequency: this.currentBed.bedCrop.cropWateringFrequency
+    if(this.currentBed.bedCrop){
+      let data = {
+        device_key: this.currentBed.bedMonitoringDevKey,
+        cropMoistureLimit: this.currentBed.bedCrop.cropMoistureLimit,
+        cropHumidityLimit: this.currentBed.bedCrop.cropHumidityLimit,
+        cropWateringFrequency: this.currentBed.bedCrop.cropWateringFrequency
+      }
+      this.socketService.writeData(data);
     }
     //console.log(data);
-    this.socketService.writeData(data);
+    
+  }
+
+  changeDate() {
+    if (this.parameters) {
+      this.selectedParameter = this.parameters.find((parameter) => {
+        return parameter.cropName == this.currentBed.bedCrop.cropName;
+      })
+    }
+    this.getParameterByID(this.selectedParameter._id);
   }
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+  }
+
+  harvest(){
+    this.loading = true;
+    this.bedService.harvest(this.currentBed)
+    .subscribe(data => {
+      //creation succesful
+      this._socketUpdate();
+      this.alertService.success("Crop Harvested");
+      this.router.navigate(['/']);
+    },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
   }
 
   goBack() {
