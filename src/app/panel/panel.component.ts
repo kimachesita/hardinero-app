@@ -95,8 +95,8 @@ export class PanelComponent implements OnInit, OnDestroy {
               bed.bedReading.weather = data.weather;
               bed.bedReading.temperature = data.temperature;
               bed.bedReading.humidity = data.humidity;
-              bed.bedReading.waterMoisture1 = data.waterMoisture1;
-              bed.bedReading.waterMoisture2 = data.waterMoisture2;
+              bed.bedReading.waterMoisture1 = data.soilMoisture1;
+              bed.bedReading.waterMoisture2 = data.soilMoisture2;
               bed.bedReading.waterPumpOn = data.waterPumpOn;
               bed.bedReading.tankLevel = data.tankLevel;
               bed.bedReading.lastWatering = data.lastWatering;

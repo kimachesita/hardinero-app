@@ -81,8 +81,11 @@
                         <div *ngIf="bed.bedMonitoringDevActive">Weather:
                             <span class="card-value-txt">{{bed.bedReading.weather}}</span>
                         </div>
-                        <div *ngIf="bed.bedMonitoringDevActive">Soil Moisture:
-                            <span class="card-value-txt">{{bed.bedReading.soilMoisture}}</span>
+                        <div *ngIf="bed.bedMonitoringDevActive">Soil Moisture 1:
+                            <span class="card-value-txt">{{bed.bedReading.waterMoisture1}}</span>
+                        </div>
+                        <div *ngIf="bed.bedMonitoringDevActive">Soil Moisture 2: 
+                            <span class="card-value-txt">{{bed.bedReading.waterMoisture2}}</span>
                         </div>
                         <div *ngIf="bed.bedMonitoringDevActive">Temperature:
                             <span class="card-value-txt">{{bed.bedReading.temperature}}</span>

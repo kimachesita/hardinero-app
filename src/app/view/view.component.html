@@ -65,8 +65,13 @@
                         <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
                     </div>
                     <div class="list-item-controller">
-                        Soil Moisture
-                        <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.moisture}}</span>
+                        Soil Moisture Prb 1:
+                        <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.waterMoisture1}}</span>
+                        <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
+                    </div>
+                    <div class="list-item-controller">
+                        Soil Moisture Prb 2:
+                        <span class="view-sensor-val" *ngIf="currentBed.bedMonitoringDevActive">{{currentBed.bedReading.waterMoisture2}}</span>
                         <span class="view-sensor-val" *ngIf="!currentBed.bedMonitoringDevActive">Offline</span>
                     </div>
                     <div class="list-item-controller">
