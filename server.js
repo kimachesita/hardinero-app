@@ -35,7 +35,7 @@ app.use(expressJwt({
       }
       return null;
   }
-}).unless({ path: [/^(?!.*(\/api))/gi,'/api/users/authenticate','/api/users/register',]}));
+}).unless({ path: [/^(?!.*(\/api))/gi,'/api/users/authenticate','/api/users/register','/','/api/beds/upload']}));
 
 //catch authentication error              
 app.use(function(err, req, res, next) {
