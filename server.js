@@ -49,6 +49,9 @@ app.use(function(err, req, res, next) {
 // Set our api routes
 app.use('/api', api);
 
+//set up directory for images
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

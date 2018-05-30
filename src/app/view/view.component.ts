@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Bed } from '../_models/Bed';
 import { BedService } from '../_services/bed.service';
 import { SocketService } from '../_services/socket.service';
+import { appConfig } from '../app.config';
 
 @Component({
   selector: 'app-view',
@@ -18,11 +19,13 @@ export class ViewComponent implements OnInit, OnDestroy {
   connection;
   payloadStorageArr = [];
   _INTERNAL_UPDATE_RATE = 500;
+  bedImage;
 
   constructor(private route: ActivatedRoute,
     private bedService: BedService,
     private location: Location,
-    private socketService: SocketService) { }
+    private socketService: SocketService,
+    private router: Router) { }
 
   ngOnInit() {
     this.fetching = true;
@@ -35,6 +38,9 @@ export class ViewComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.bedService.getById(id).subscribe((bed) => {
       this.currentBed = bed;
+      //this.bedImage = appConfig.rootUrl + '/images/' + this.currentBed.bedMonitoringDevKey + '.jpg';
+      this.bedImage = this.location.path().split('/',3)[0] + 'images/' + this.currentBed.bedMonitoringDevKey + '.jpg';
+      
       this.fetching = false;
     });
   }
@@ -76,7 +82,7 @@ export class ViewComponent implements OnInit, OnDestroy {
   }  
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 
 }

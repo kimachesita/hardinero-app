@@ -7,7 +7,8 @@
 .mat-view-container{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly; 
+    flex-wrap:wrap;
 }
 
 .view-txt{
@@ -25,9 +26,9 @@
 }
 
 .view-divider{
-    margin: 2em;
+    margin-top: 5em;
     width: 280px;
-    padding: 2em;
+
 }
 
 .list-item-controller{

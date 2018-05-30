@@ -2,13 +2,17 @@
     <div>Fetching...</div>
 </div>
 <div class="" *ngIf="!fetching">
-    <mat-toolbar color="">
+    <mat-toolbar class='z-depth-2' color="">
         <span>View Bed</span>
         <!-- This fills the remaining space of the current row -->
         <span class="fill-remaining-space"></span>
         <button mat-button class="" id="" (click)="goBack()">Back to Panel</button>
     </mat-toolbar>
     <div class="mat-view-container" *ngIf="currentBed">
+        <div class="mat-view-image-section view-divider">
+            <img class="z-depth-1-half" src="{{bedImage}}" alt="Latest Snapshot" width="300" height="300">
+            <div class="view-txt">Latest Feed</div>
+        </div>
         <div class="mat-view-basic-section view-divider">
             <div class="view-txt">
                 <div class="view-txt-label">Name</div> {{currentBed.bedCommonName}}</div>
@@ -25,7 +29,10 @@
                 <div class="view-txt-label">Monitoring Device</div> Offline
             </div>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
+        <!-- <mat-divider [vertical]="true"></mat-divider> -->
+        <div class="mat-view-crop-section view-divider" *ngIf="!currentBed.bedCrop">
+            <div class="component-headers">No Crop Added Yet.</div>
+        </div>
         <div class="mat-view-crop-section view-divider" *ngIf="currentBed.bedCrop">
             <div class="view-txt">
                 <div class="view-txt-label">Crop Name</div> {{currentBed.bedCrop.cropName}}</div>
@@ -41,9 +48,6 @@
                 <div class="view-txt-label">Humidity Limit</div> {{currentBed.bedCrop.cropHumidityLimit}}</div>
             <div class="view-txt">
                 <div class="view-txt-label">Watering Frequency</div> {{currentBed.bedCrop.cropWateringFrequency}}</div>
-        </div>
-        <div class="mat-view-crop-section view-divider" *ngIf="!currentBed.bedCrop">
-            <div class="component-headers">No Crop Added Yet.</div>
         </div>
         <div class="mat-view-sensor-section view-divider">
             <mat-card>

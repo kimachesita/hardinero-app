@@ -13,7 +13,7 @@ function SocketManager(server) {
     //console.log(`Socket ${socket.id} connected...`);
 
     socket.on('overwriteReq', function (data) {
-      console.log(`Overwrite request to ${data.device_key}:`);
+      //console.log(`Overwrite request to ${data.device_key}:`);
       socket.broadcast.emit('overwrite',data);
     });
 

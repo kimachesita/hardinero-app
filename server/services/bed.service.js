@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Q = require('q');
 const mongoose = require('mongoose');
+const formidable = require('formidable');
+const fs = require('fs');
+const path = require('path');
 
 const Bed = require('../models/bed.model');
 
@@ -16,6 +19,7 @@ service.getById = getById;
 service.update = update;
 service.harvest = harvest;
 service._delete = _delete;
+service.upload = upload;
 
 module.exports = service;
 
@@ -244,5 +248,21 @@ function _delete(id) {
 
     return deferred.promise;
 }
+
+function upload(req){
+    let deferred = Q.defer();
+    let form = new formidable.IncomingForm();
+    form.parse(req,function(err, fields, files){
+        let oldpath = files.image.path;
+        let newpath = path.join(__dirname , '../../images/' + files.image.name);
+        fs.rename(oldpath,newpath , function(err){
+            if(err) deferred.reject();
+            deferred.resolve();
+        })
+        deferred.resolve();
+    })
+    return deferred.promise;
+}
+
 
 
