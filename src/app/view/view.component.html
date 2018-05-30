@@ -10,7 +10,8 @@
     </mat-toolbar>
     <div class="mat-view-container" *ngIf="currentBed">
         <div class="mat-view-image-section view-divider">
-            <img class="z-depth-1-half" src="{{bedImage}}" alt="Latest Snapshot" width="300" height="300">
+            <img class="z-depth-1-half" src="{{bedImage}}" alt="Image not found" onerror="this.onerror=null;this.src='/images/notfound.jpg';" width="300" height="300" />
+            <!-- <img class="z-depth-1-half" src="{{bedImage}}" alt="Latest Snapshot" width="300" height="300"> -->
             <div class="view-txt">Latest Feed</div>
         </div>
         <div class="mat-view-basic-section view-divider">
