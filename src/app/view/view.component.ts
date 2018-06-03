@@ -64,8 +64,8 @@ export class ViewComponent implements OnInit, OnDestroy {
           this.currentBed.bedReading.weather = data.weather;
           this.currentBed.bedReading.temperature = data.temperature;
           this.currentBed.bedReading.humidity = data.humidity;
-          this.currentBed.bedReading.waterMoisture1 = data.waterMoisture1;
-          this.currentBed.bedReading.waterMoisture2 = data.waterMoisture2;
+          this.currentBed.bedReading.waterMoisture1 = data.soilMoisture1;
+          this.currentBed.bedReading.waterMoisture2 = data.soilMoisture2;
           this.currentBed.bedReading.waterPumpOn = data.waterPumpOn;
           this.currentBed.bedReading.tankLevel = data.tankLevel;
           this.currentBed.bedReading.lastWatering = data.lastWatering;
