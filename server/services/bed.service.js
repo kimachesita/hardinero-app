@@ -197,9 +197,9 @@ function update(_id, bedParam, ownerId) {
         if (bedParam.bedCrop && bedParam.bedCrop.cropSpecie) currentBed.bedCrop.cropSpecie = bedParam.bedCrop.cropSpecie;
         if (bedParam.bedCrop && bedParam.bedCrop.cropPlantDate) currentBed.bedCrop.cropPlantDate = bedParam.bedCrop.cropPlantDate;
         if (bedParam.bedCrop && bedParam.bedCrop.cropHarvestDate) currentBed.bedCrop.cropHarvestDate = bedParam.bedCrop.cropHarvestDate;
-        if (bedParam.bedCrop && bedParam.bedCrop.cropMoistureLimit) currentBed.bedCrop.cropMoistureLimit = bedParam.bedCrop.cropMoistureLimit;
-        if (bedParam.bedCrop && bedParam.bedCrop.cropHumidityLimit) currentBed.bedCrop.cropHumidityLimit = bedParam.bedCrop.cropHumidityLimit;
-        if (bedParam.bedCrop && bedParam.bedCrop.cropWateringFrequency) currentBed.bedCrop.cropWateringFrequency = bedParam.bedCrop.cropWateringFrequency;
+        if (bedParam.bedCrop) currentBed.bedCrop.cropMoistureLimit = bedParam.bedCrop.cropMoistureLimit;
+        if (bedParam.bedCrop) currentBed.bedCrop.cropHumidityLimit = bedParam.bedCrop.cropHumidityLimit;
+        if (bedParam.bedCrop) currentBed.bedCrop.cropWateringFrequency = bedParam.bedCrop.cropWateringFrequency;
         if (bedParam.bedMonitoringDevKey) currentBed.bedMonitoringDevKey = bedParam.bedMonitoringDevKey;
         if (bedParam.bedMonitoringDevActive) currentBed.bedMonitoringDevActive = bedParam.bedMonitoringDevActive;
 
