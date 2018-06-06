@@ -16,7 +16,7 @@ import { SocketService } from '../_services/socket.service';
 })
 export class PanelComponent implements OnInit, OnDestroy {
 
-  title = "Raspberry Pi Based Crops and Soil Monitoring System";
+  title = "Raspberry Pi-Based Vegetable Monitoring System";
   currentUser: User;
   currentUserBeds: Bed[];
   currentUserBedsNum: number = 0;

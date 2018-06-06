@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   model: any = {};
   loading = false;
-  title = "Raspberry Pi Based Crops and Soil Monitoring System";
+  title = "Raspberry Pi-Based Vegetable Monitoring System";
 
   constructor(
     private router: Router,
